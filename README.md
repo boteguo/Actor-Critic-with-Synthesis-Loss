@@ -1,6 +1,8 @@
-# Actor-Critic-with-Synthesis-Loss
-Actor Critic with Synthesis Loss 2021
+#Actor-Critic with Synthesis Loss
+---
+Pytorch implementation of Actor-Critic with Synthesis Loss. Algorithm is tested on MuJoCo continuous tasks version3 in OpenAI gym. Networks are trained using PyTorch 1.8.1 and Python 3.7
 
+##Usage
 
+`python main.py --env-name <environment_name> --cuda --limit_kl --kl_target 5e-3 --agentname <name>`
 
-This is the source code for ACSL, to be uploaded very soon, after we clean the codes first.
