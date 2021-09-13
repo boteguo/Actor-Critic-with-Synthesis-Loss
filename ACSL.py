@@ -124,6 +124,7 @@ class ACSLAgent(object):
             next_action_mean = self.policy.sample_random_action(next_states)
             next_q1,next_q2 = self.critic_target(next_states, next_action_mean)
             next_q1 = torch.min(next_q1,next_q2)
+	    next_q1 = self.softmax_operator(next_q1)
         return rewards + masks * self.gamma * next_q1,next_q1
 
     def calc_q(self,states,actions):
@@ -134,10 +135,10 @@ class ACSLAgent(object):
         curr_q1,curr_q2 = self.calc_current_q(states, actions)
         Y,next_q = self.calc_target_q(rewards, next_states, masks)
         sigma1 = curr_q1 - Y
-        loss1 =  sigma1 ** 2
+        loss1 =  self.lambd * curr_q1 + sigma1 ** 2
         loss1 = torch.mean(loss1)
         sigma2 = curr_q2 - Y
-        loss2 =  sigma2 ** 2
+        loss2 =  self.lambd * curr_q2 + sigma2 ** 2
         loss2 = torch.mean(loss2)
         return loss1,loss2
 
