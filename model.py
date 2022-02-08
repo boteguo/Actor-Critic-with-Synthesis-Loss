@@ -41,8 +41,10 @@ class MujocoDoubleQNetwork(BaseNetwork):
         self.apply(weights_init_)
 
     def forward(self, state, action):
-        
-        xu = torch.cat([state, action], 1)
+        if len(state.shape) == 3:
+            xu = torch.cat([state,action],2)
+        else:
+            xu = torch.cat([state, action], 1)
         x1 = F.relu(self.q1_base(xu), inplace=False)
         x1 = self.q1_out_layer(x1)
         x2 = F.relu(self.q2_base(xu), inplace=False)
