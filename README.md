@@ -1,12 +1,12 @@
-#Actor-Critic with Synthesis Loss
+# Actor-Critic with Synthesis Loss
 ---
 Pytorch implementation of Actor-Critic with Synthesis Loss. Algorithm is tested on MuJoCo continuous tasks version3 in OpenAI gym.
 
-##Installation
+## Installation
 
     conda env create -f ACSL.yaml
 
-##Usage
+## Usage
 
 To replicate the results in the paper:
 
